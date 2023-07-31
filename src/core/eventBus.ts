@@ -1,30 +1,35 @@
 
 import { typeError } from "../utils/typeValidate";
 
+type handlesType = {
+  eventCallback: (...args: any[]) => void,
+  thisArg: any
+}
+
 class EventBus {
   private eventBus: {
-    [key: string | symbol]: any
+    [key: string | symbol]: InstanceType<typeof Set<handlesType>>
   }
   constructor() {
     this.eventBus = {}
   }
 
   on(eventName: string, eventCallback: (...args: any[]) => void, thisArg?: any) {
+
     typeError(eventName, "string")
     typeError(eventCallback, "function")
 
     let handlers = this.eventBus[eventName];
     if (!handlers) {
-      handlers = []
+      handlers = new Set()
       this.eventBus[eventName] = handlers
     }
-    handlers.push({
+    handlers.add({
       eventCallback,
       thisArg
     })
     return this
   }
-  // 监听一个自定义事件,但是只会执行一次,执行完毕后当前事件监听器会被移除.
   once(eventName: string, eventCallback: (...args: any[]) => void, thisArg?: any) {
 
     typeError(eventName, "string")
@@ -37,7 +42,6 @@ class EventBus {
     return this.on(eventName, listeningCallBack, thisArg)
   }
 
-  // 删除对应的数据
   off(eventName: string, eventCallback?: (...args: any[]) => void) {
 
     typeError(eventName, "string")
@@ -47,21 +51,18 @@ class EventBus {
 
     // 找到指定的进行删除
     if (handlers && eventCallback) {
-      const newhandlers = [...handlers];
-      newhandlers.forEach((event) => {
+      const newhandlers = Array.from(handlers);
+      newhandlers.forEach((event: any) => {
         if (event.eventCallback === eventCallback) {
-          const eventIndex = handlers[event]
-          handlers.splice(eventIndex, 1)
+          handlers.delete(event)
         }
       })
     }
     // 如果name中数组是空的, 那么情况再对象中删除该事件!
-    if (!handlers.length) {
+    if (!handlers.size) {
       delete this.eventBus[eventName]
     }
   }
-
-  // 触发
   emit(eventName: string | symbol, ...payload: any[]) {
 
     typeError(eventName, "string");

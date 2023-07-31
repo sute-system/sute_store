@@ -1,11 +1,20 @@
 
 const typeError = (typeValue: any, type: string) => {
+
+  if (!typeValue || !type) {
+    throw new Error("Please check whether parameters are passed")
+  }
   if (typeof typeValue !== type) {
     throw new TypeError(`this ${typeValue} params must be ${type} type`)
   }
 }
 
 const absenceError = (contain: objType, children: string, containName: string) => {
+
+  if (!contain || !children || !containName) {
+    throw new Error("Please check whether parameters are passed")
+  }
+
   if (Object.keys(contain).indexOf(children) === -1) {
     throw new Error(`This ${children} is not in the ${containName}`);
   }

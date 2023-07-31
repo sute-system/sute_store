@@ -1,13 +1,24 @@
 {
   "name": "sute-store",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "keywords": [
+    "typescript",
+    "event-bus",
+    "event-store"
+  ],
+  "main": "./lib/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "lib/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://jihulab.com/sute/sute_store"
+  },
+  "author": "cxw",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.4.5",
     "typescript": "^5.1.6"

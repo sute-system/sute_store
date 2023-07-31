@@ -1,5 +1,8 @@
 {
   "display": "Node 14",
+  "exclude": [
+    "_test_"
+  ],
   "compilerOptions": {
     "lib": [
       "es2020"
@@ -10,7 +13,7 @@
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "strict": true, /* Enable all strict type-checking options. */
     "skipLibCheck": true,
-    "outDir": "lib", /* Skip type checking all .d.ts files. */
+    "outDir": "./lib", /* Skip type checking all .d.ts files. */
     "moduleResolution": "node"
   }
 }
