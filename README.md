@@ -11,7 +11,7 @@ npm install sute-store
 ## 2、事件总线（EventBus）
 
 ```javascript
-const { EventBus } = require("../lib/index");
+const { EventBus } = require("sute-store");
 
 const eventBus = new EventBus();
 
@@ -35,7 +35,7 @@ eventBus.emit("test", 1, 2, 3); // 无输出
 ## 3、数据共享（EventStore）
 
 ```javascript
-const { EventStore } = require("../lib/index");
+const { EventStore } = require("sute-store");
 
 const eventStores = new EventStore({
   state: {

@@ -13,6 +13,10 @@
   "files": [
     "lib/*"
   ],
+  "bugs": {
+    "url": "https://jihulab.com/sute/sute_store/-/issues"
+  },
+  "typings": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://jihulab.com/sute/sute_store"
